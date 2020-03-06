@@ -1,0 +1,57 @@
+class Animals : 
+
+      def __init__(self,nombre,regime_alimentaire,quantité_nourriture):
+
+          self.nombre = nombre
+          self.regime_alimentaire = regime_alimentaire
+          self.quantité_nourriture = quantité_nourriture
+
+class Mammifere(Animals) :
+
+   def __init__(self,nombre,regime_alimentaire,quantité_nourriture,nombre_pattes ):
+
+        super().__init__(nombre,regime_alimentaire,quantité_nourriture) # pour aller rechercher dans ça classe mère
+        self.nombre_pattes = nombre_pattes                              # puis rajouter ce qui n'etais pas dans la class mère
+
+   def __str__(self):                                                   # pour remplacer le printf en C
+
+        return " et bien nous en avons " + str(self.nombre) + " il est " + self.regime_alimentaire + " il mange " + str(self.quantité_nourriture) +"g de nouriture par jours et il a " +str(self.nombre_pattes) + " pattes"
+
+class Domestique(Animals) :
+
+    def __init__(self,nombre,regime_alimentaire,quantité_nourriture,nombre_pattes ):
+
+         super().__init__(nombre,regime_alimentaire,quantité_nourriture)
+         self.nombre_pattes = nombre_pattes
+
+    def __str__(self):
+
+        return " et bien nous en avons " + str(self.nombre) + " il est " + self.regime_alimentaire + " il mange " + str(self.quantité_nourriture) +"g de nouriture par jours et il a " +str(self.nombre_pattes) + " pattes"
+
+class Animal_marin(Animals) :
+
+     def __init__(self,nombre,regime_alimentaire,quantité_nourriture,nombre_pattes = 0):
+
+        super().__init__(nombre,regime_alimentaire,quantité_nourriture)
+        self.nombre_pattes = 0                                          #Les animaux marins on toujours les pattes nul
+
+     def __str__(self):
+
+        return " et bien nous en avons " + str(self.nombre) + " il est " + self.regime_alimentaire + " il mange " + str(self.quantité_nourriture) +"g de nouriture par jours et il a " +str(self.nombre_pattes) + " pattes"
+
+if __name__ == "__main__":
+
+    zoo = {}
+    zoo["Humain"] = Mammifere(2,'Omnivore',600,2)
+    zoo["Lion"] = Mammifere(1,'Carnivore',3000,4)
+    zoo["Lapin"] = Domestique(7,'Vegetarien',100,4)
+    zoo["Mouton"] = Domestique(5,'Vegetarien',500,4)
+    zoo["Chien"] = Domestique(2,'Omnivore',500,4)
+    zoo["Pieuvre"] = Animal_marin(1,'Carnivore',200)
+    zoo["Serpent"] = Animals(2,'Carnivore',200)
+    zoo["Autruche"] = Animals(4,'Omnivore',1000)
+    zoo["Poule"] = Mammifere(8,'Omnivore',200,2)
+
+    for clef in zoo:                            #Pour faire un racourci pour de print
+
+        print (clef+""+str(zoo[clef]))          #Pour afficher du tableau et les return
